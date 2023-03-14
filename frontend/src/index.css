@@ -142,3 +142,8 @@ img.medium{
   color: #edd38c;
   margin: 0.1rem;
 }
+
+.rating span:last-child{
+  color: #585858;
+  padding-left: 10px;
+}

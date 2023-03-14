@@ -8,7 +8,7 @@ const data = {
             price: 125,
             brand: 'Hugo',
             rating: 4.0,
-            numReviews: 10,
+            numRatings: 10,
             desciption: "Upgrade your style with these sleek and durable mens glasses, featuring a classic design and comfortable fit.",
         },
 
@@ -20,7 +20,7 @@ const data = {
             price: 150,
             brand: 'Gucci',
             rating: 4.5,
-            numReviews: 20,
+            numRatings: 20,
             desciption: "Elevate your look with these sophisticated and feminine women's glasses, designed with a modern aesthetic and premium materials.",
         },
         
@@ -32,7 +32,7 @@ const data = {
             price: 85,
             brand: 'Disney',
             rating: 5.0,
-            numReviews: 15,
+            numRatings: 15,
             desciption: "Get your little one ready for school with these fun and durable kids glasses, designed for a comfortable fit and with a colorful frame.",
         },
 
@@ -43,8 +43,8 @@ const data = {
             image: 'images/p1.jpg',
             price: 200,
             brand: 'Diesel',
-            rating: 3.5,
-            numReviews: 5,
+            rating: 3.0,
+            numRatings: 5,
             desciption: "Refreshing new look for men with glossy black plastic and grey metal accents.",
         },
 
@@ -56,7 +56,7 @@ const data = {
             price: 125,
             brand: 'Coach',
             rating: 4.0,
-            numReviews: 12,
+            numRatings: 12,
             desciption: "Make a statement with these trendy women's glasses, featuring a unique frame design and high-quality lenses for optimal vision."
 
 
@@ -72,7 +72,7 @@ const data = {
             price: 75,
             brand: 'Marvel',
             rating: 4.0,
-            numReviews: 2,
+            numRatings: 2,
             desciption: "Keep your child seeing clearly and looking cute with these fun and durable child-sized glasses.",
         },
 
@@ -84,7 +84,7 @@ const data = {
             price: 250,
             brand: 'Tommy',
             rating: 4.5,
-            numReviews: 25,
+            numRatings: 25,
             desciption: "Upgrade your eyewear game with these stylish and durable men's glasses, perfect for both work and play.",
         },
     ]
