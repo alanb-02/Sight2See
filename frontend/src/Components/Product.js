@@ -1,28 +1,34 @@
-import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
-export default function Product(props) {
+function Product(props) {
   const { product } = props;
   return (
-    <div key={product.slug} className="card">
-      <a href={`/product/${product.slug}`}>
-        {/* this is telling the link for the product of that specific product slug */}
-        <img className="medium" src={product.image} alt={product.name} />
-        {/* image size must be: 680px by 830px */}
-      </a>
-      <div className="card-body">
-        <a href={`/product/${product.slug}`}>
-          {/* this is telling the link for the product of that specific product slug */}
-          <h2>{product.name}</h2>
-          <h3>{product.brand}</h3>
-        </a>
-        <Rating
-          rating={product.rating}
-          numRatings={product.numRatings}
-        ></Rating>
-        <div className="price">${product.price}</div>
-        <button>Add to cart</button>
-      </div>
-    </div>
+    <Card>
+      <Link to={`/product/${product.slug}`}>
+        <img
+          src={product.image}
+          className="medium card-img-top"
+          alt={product.name}
+        />
+      </Link>
+      <Card.Body>
+        <Link
+          to={`/product/${product.slug}`}
+          style={{ textDecoration: 'none' }}
+        >
+          <Card.Title>{product.name}</Card.Title>
+        </Link>
+        <Card.Text>{product.brand}</Card.Text>
+        <Rating rating={product.rating} numReviews={product.numRatings} />
+        <Card.Text>
+          <strong>${product.price}</strong>
+        </Card.Text>
+        <Button>Add to cart</Button>
+      </Card.Body>
+    </Card>
   );
 }
+export default Product;
