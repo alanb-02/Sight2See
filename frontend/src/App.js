@@ -8,6 +8,8 @@ import CartScreen from './screens/CartScreen';
 import SignInScreen from './screens/SignInScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
+import PaymentChoiceScreen from './screens/PaymentChoiceScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
@@ -25,6 +27,7 @@ function App() {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
     toast.success('You have been logged out.');
   };
   return (
@@ -80,6 +83,8 @@ function App() {
               <Route path="/signin" element={<SignInScreen />} />
               <Route path="/signup" element={<RegisterScreen />} />
               <Route path="/shipping" element={<ShippingScreen />}></Route>
+              <Route path="/payment" element={<PaymentChoiceScreen />}></Route>
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
