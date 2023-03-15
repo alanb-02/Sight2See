@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: '1',
+      //_id: '1',
       name: 'Mens Frame 1',
       slug: 'mens-fr1',
       category: 'men',
@@ -17,7 +17,7 @@ const data = {
     },
 
     {
-      _id: '2',
+      //_id: '2',
       name: 'Womens Frame 1',
       slug: 'womens-fr1',
       category: 'women',
@@ -33,7 +33,7 @@ const data = {
     },
 
     {
-      _id: '3',
+      //_id: '3',
       name: 'Kids Frame 1',
       slug: 'kids-fr1',
       category: 'child',
@@ -49,7 +49,7 @@ const data = {
     },
 
     {
-      _id: '4',
+      //_id: '4',
       name: 'Mens Frame 2',
       slug: 'mens-fr2',
       category: 'men',
@@ -65,7 +65,7 @@ const data = {
     },
 
     {
-      _id: '5',
+      //_id: '5',
       name: 'Womens Frame 2',
       slug: 'womens-fr2',
       category: 'women',
@@ -81,7 +81,7 @@ const data = {
     },
 
     {
-      _id: '6',
+      //_id: '6',
       name: 'Kids Frame 2',
       slug: 'kids-fr2',
       category: 'child',
@@ -97,7 +97,7 @@ const data = {
     },
 
     {
-      _id: '7',
+      //_id: '7',
       name: 'Mens Frame 3',
       slug: 'mens-fr3',
       category: 'men',

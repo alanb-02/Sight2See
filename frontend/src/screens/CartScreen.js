@@ -39,7 +39,7 @@ export default function CartScreen() {
   return (
     <div>
       <Helmet>
-        <title>Shopping Cart</title>
+        <title>Sight2SeeShopping Cart</title>
       </Helmet>
       <h1>Shopping Cart</h1>
       <Row>
