@@ -15,7 +15,7 @@ export default function ShippingScreen() {
   } = state;
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
-  const [city, setCity] = useState(shippingAddress.city || '');
+  const [county, setCounty] = useState(shippingAddress.county || '');
   const [postalCode, setPostalCode] = useState(
     shippingAddress.postalCode || ''
   );
@@ -32,7 +32,7 @@ export default function ShippingScreen() {
       payload: {
         fullName,
         address,
-        city,
+        county,
         postalCode,
         country,
       },
@@ -42,7 +42,7 @@ export default function ShippingScreen() {
       JSON.stringify({
         fullName,
         address,
-        city,
+        county,
         postalCode,
         country,
       })
@@ -52,7 +52,7 @@ export default function ShippingScreen() {
   return (
     <div>
       <Helmet>
-        <title>Shipping Address</title>
+        <title>Sight2See - Shipping Address</title>
       </Helmet>
 
       <CheckoutSteps step1 step2></CheckoutSteps>
@@ -79,13 +79,13 @@ export default function ShippingScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="city">
+          <Form.Group className="mb-3" controlId="county">
             <Form.Label>
-              <strong>County</strong>
+              <strong>county</strong>
             </Form.Label>
             <Form.Control
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={county}
+              onChange={(e) => setCounty(e.target.value)}
               required
             />
           </Form.Group>
