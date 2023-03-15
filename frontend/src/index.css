@@ -75,3 +75,8 @@ img.medium {
   color: #585858;
   padding-left: 10px;
 }
+
+/* PRODUCT PAGE */
+.img-large {
+  max-width: 100%;
+}

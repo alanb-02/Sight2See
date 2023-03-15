@@ -5,14 +5,14 @@ const data = {
       name: 'Mens Frame 1',
       slug: 'mens-fr1',
       category: 'men',
-      image: 'images/p1.jpg',
+      image: '/images/p1.jpg',
       model: '',
       price: 125,
-      countInStock: 10,
+      countInStock: 0,
       brand: 'Hugo',
       rating: 4.0,
       numRatings: 10,
-      desciption:
+      description:
         'Upgrade your style with these sleek and durable mens glasses, featuring a classic design and comfortable fit.',
     },
 
@@ -21,14 +21,14 @@ const data = {
       name: 'Womens Frame 1',
       slug: 'womens-fr1',
       category: 'women',
-      image: 'images/p2.jpg',
+      image: '/images/p2.jpg',
       model: '',
       price: 150,
       countInStock: 10,
       brand: 'Gucci',
       rating: 4.5,
       numRatings: 20,
-      desciption:
+      description:
         "Elevate your look with these sophisticated and feminine women's glasses, designed with a modern aesthetic and premium materials.",
     },
 
@@ -37,14 +37,14 @@ const data = {
       name: 'Kids Frame 1',
       slug: 'kids-fr1',
       category: 'child',
-      image: 'images/p3.jpg',
+      image: '/images/p3.jpg',
       model: '',
       price: 85,
       countInStock: 10,
       brand: 'Disney',
       rating: 5.0,
       numRatings: 15,
-      desciption:
+      description:
         'Get your little one ready for school with these fun and durable kids glasses, designed for a comfortable fit and with a colorful frame.',
     },
 
@@ -53,14 +53,14 @@ const data = {
       name: 'Mens Frame 2',
       slug: 'mens-fr2',
       category: 'men',
-      image: 'images/p1.jpg',
+      image: '/images/p1.jpg',
       model: '',
       price: 200,
       countInStock: 10,
       brand: 'Diesel',
       rating: 3.0,
       numRatings: 5,
-      desciption:
+      description:
         'Refreshing new look for men with glossy black plastic and grey metal accents.',
     },
 
@@ -69,14 +69,14 @@ const data = {
       name: 'Womens Frame 2',
       slug: 'womens-fr2',
       category: 'women',
-      image: 'images/p2.jpg',
+      image: '/images/p2.jpg',
       model: '',
       price: 125,
       countInStock: 10,
       brand: 'Coach',
       rating: 4.0,
       numRatings: 12,
-      desciption:
+      description:
         "Make a statement with these trendy women's glasses, featuring a unique frame design and high-quality lenses for optimal vision.",
     },
 
@@ -85,14 +85,14 @@ const data = {
       name: 'Kids Frame 2',
       slug: 'kids-fr2',
       category: 'child',
-      image: 'images/p3.jpg',
+      image: '/images/p3.jpg',
       model: '',
       price: 75,
       countInStock: 10,
       brand: 'Marvel',
       rating: 4.0,
       numRatings: 2,
-      desciption:
+      description:
         'Keep your child seeing clearly and looking cute with these fun and durable child-sized glasses.',
     },
 
@@ -101,14 +101,14 @@ const data = {
       name: 'Mens Frame 3',
       slug: 'mens-fr3',
       category: 'men',
-      image: 'images/p1.jpg',
+      image: '/images/p1.jpg',
       model: '',
       price: 250,
       countInStock: 10,
       brand: 'Tommy',
       rating: 4.5,
       numRatings: 25,
-      desciption:
+      description:
         "Upgrade your eyewear game with these stylish and durable men's glasses, perfect for both work and play.",
     },
   ],
