@@ -80,3 +80,8 @@ img.medium {
 .img-large {
   max-width: 100%;
 }
+
+/* CART PAGE */
+.img-thumbnail {
+  height: 80px;
+}
