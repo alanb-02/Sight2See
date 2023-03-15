@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import SignInScreen from './screens/SignInScreen';
+import ShippingScreen from './screens/ShippingScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
@@ -22,6 +23,7 @@ function App() {
   const signoutHandler = () => {
     ctxDispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingAddress');
     toast.success('You have been logged out.');
   };
   return (
@@ -75,6 +77,7 @@ function App() {
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/signin" element={<SignInScreen />} />
+              <Route path="/shipping" element={<ShippingScreen />}></Route>
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>
