@@ -8,6 +8,7 @@ import MessageBox from '../Components/MessageBox';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -52,6 +53,9 @@ export default function DashboardScreen() {
 
   return (
     <div>
+      <Helmet>
+        <title>Sight2See - Dashboard</title>
+      </Helmet>
       <h1 className="mb-5">Dashboard</h1>
       {loading ? (
         <LoadingBox />

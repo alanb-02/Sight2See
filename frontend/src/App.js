@@ -16,6 +16,7 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import UserProfileScreen from './screens/UserProfileScreen';
 import SearchScreen from './screens/SearchScreen';
 import DashboardScreen from './screens/DashboardScreen';
+import AllProducts from './screens/AllProducts';
 import SearchBar from './Components/SearchBar';
 import ProtectedRoute from './Components/ProtectedRoute';
 import AdminRoute from './Components/AdminRoute';
@@ -119,13 +120,13 @@ function App() {
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/admin/productlist">
+                      <LinkContainer to="/admin/products">
                         <NavDropdown.Item>Products</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/admin/orderlist">
+                      <LinkContainer to="/admin/orders">
                         <NavDropdown.Item>Orders</NavDropdown.Item>
                       </LinkContainer>
-                      <LinkContainer to="/admin/userlist">
+                      <LinkContainer to="/admin/users">
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
@@ -200,6 +201,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <DashboardScreen />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <AllProducts />
                   </AdminRoute>
                 }
               ></Route>
