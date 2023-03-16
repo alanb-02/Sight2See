@@ -10,6 +10,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentChoiceScreen from './screens/PaymentChoiceScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import OrderScreen from './screens/OrderScreen';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
@@ -78,13 +79,14 @@ function App() {
         <main>
           <Container className="mt-3">
             <Routes>
-              <Route path="/product/:slug" element={<ProductScreen />} />
-              <Route path="/cart" element={<CartScreen />} />
-              <Route path="/signin" element={<SignInScreen />} />
-              <Route path="/signup" element={<RegisterScreen />} />
+              <Route path="/product/:slug" element={<ProductScreen />}></Route>
+              <Route path="/cart" element={<CartScreen />}></Route>
+              <Route path="/signin" element={<SignInScreen />}></Route>
+              <Route path="/signup" element={<RegisterScreen />}></Route>
               <Route path="/shipping" element={<ShippingScreen />}></Route>
               <Route path="/payment" element={<PaymentChoiceScreen />}></Route>
-              <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/placeorder" element={<PlaceOrderScreen />}></Route>
+              <Route path="/order/:id" element={<OrderScreen />}></Route>
               <Route path="/" element={<HomeScreen />} />
             </Routes>
           </Container>

@@ -59,7 +59,12 @@ export default function CartScreen() {
                         alt={item.name}
                         className="img-fluid rounded img-thumbnail"
                       ></img>{' '}
-                      <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                      <Link
+                        to={`/product/${item.slug}`}
+                        className="text-black text-decoration-none"
+                      >
+                        {item.name}
+                      </Link>
                     </Col>
                     <Col md={3}>
                       <Button
@@ -86,7 +91,8 @@ export default function CartScreen() {
                     <Col md={2}>
                       <Button
                         onClick={() => removeItemHandler(item)}
-                        variant="light"
+                        variant="danger"
+                        className=" "
                       >
                         <i className="fas fa-trash"></i>
                       </Button>
@@ -115,6 +121,7 @@ export default function CartScreen() {
                       variant="primary"
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
+                      className="btn-warning text-white"
                     >
                       Proceed to Checkout
                     </Button>
