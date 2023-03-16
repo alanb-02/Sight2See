@@ -17,6 +17,11 @@ main {
 
 .btn-primary {
   background-color: #f0c040;
+  color: #ffffff;
+}
+
+.btn-outline-primary {
+  background-color: #f0c040;
   color: #000000;
 }
 
@@ -32,6 +37,7 @@ img.medium {
   padding: 10px;
 }
 
+/* home products */
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +85,36 @@ img.medium {
 /* PRODUCT PAGE */
 .img-large {
   max-width: 100%;
+}
+
+/* sidebar */
+.navbar-brand {
+  font-weight: bold;
+}
+
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.site-container {
+  transition: 0.4s;
+}
+
+.active-cont {
+  margin-left: 240px;
+}
+
+.active-nav {
+  left: 0;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 /* CART PAGE */
