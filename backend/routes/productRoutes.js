@@ -20,12 +20,13 @@ productRouter.post(
       name: 'sample name ' + Date.now(),
       slug: 'sample-name-' + Date.now(),
       image: '/images/p1.jpg',
+      threeD: 'sample model',
       price: 0,
       category: 'sample category',
       brand: 'sample brand',
       countInStock: 0,
       rating: 0,
-      numReviews: 0,
+      numRatings: 0,
       description: 'sample description',
     });
     const product = await newProduct.save();

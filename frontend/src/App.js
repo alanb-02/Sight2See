@@ -17,6 +17,7 @@ import UserProfileScreen from './screens/UserProfileScreen';
 import SearchScreen from './screens/SearchScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import AllProducts from './screens/AllProducts';
+import EditProductScreen from './screens/EditProductScreen';
 import SearchBar from './Components/SearchBar';
 import ProtectedRoute from './Components/ProtectedRoute';
 import AdminRoute from './Components/AdminRoute';
@@ -209,6 +210,14 @@ function App() {
                 element={
                   <AdminRoute>
                     <AllProducts />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <EditProductScreen />
                   </AdminRoute>
                 }
               ></Route>
