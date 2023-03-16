@@ -1,0 +1,21 @@
+{
+  "name": "sight2seeapp",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000S\u0000i\u0000g\u0000h\u0000t\u00002\u0000S\u0000e\u0000e\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanb-02/Sight2See.git"
+  },
+  "author": "alan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanb-02/Sight2See/issues"
+  },
+  "homepage": "https://github.com/alanb-02/Sight2See#readme"
+}
