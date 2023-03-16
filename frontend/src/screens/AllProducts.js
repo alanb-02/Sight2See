@@ -39,7 +39,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function ProductListScreen() {
+export default function AllProducts() {
   const [{ loading, error, products, pages, loadingCreate }, dispatch] =
     useReducer(reducer, {
       loading: true,
@@ -53,14 +53,12 @@ export default function ProductListScreen() {
 
   const { state } = useContext(Store);
   const { userInfo } = state;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`/api/products/admin?page=${page} `, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {}
     };
@@ -89,12 +87,8 @@ export default function ProductListScreen() {
       }
     }
   };
-
   return (
     <div>
-      <Helmet>
-        <title>Sight2See - All Products</title>
-      </Helmet>
       <Row>
         <Col>
           <h1>Products</h1>
@@ -113,6 +107,7 @@ export default function ProductListScreen() {
       </Row>
 
       {loadingCreate && <LoadingBox></LoadingBox>}
+
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
@@ -127,7 +122,6 @@ export default function ProductListScreen() {
                 <th>PRICE</th>
                 <th>CATEGORY</th>
                 <th>BRAND</th>
-                <th>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
