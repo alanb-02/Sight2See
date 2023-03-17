@@ -36,12 +36,12 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: '$1 to $50',
-    value: '1-50',
+    name: '$50 to 100',
+    value: '50-100',
   },
   {
-    name: '$51 to $200',
-    value: '51-200',
+    name: '$101 to $200',
+    value: '101-200',
   },
   {
     name: '$201 to $1000',
@@ -122,7 +122,7 @@ export default function SearchScreen() {
     fetchCategories();
   }, [dispatch]);
 
-  const getFilterUrl = (filter, skipPathname) => {
+  const getFilterUrl = (filter) => {
     const filterPage = filter.page || page;
     const filterCategory = filter.category || category;
     const filterQuery = filter.query || query;
@@ -132,7 +132,7 @@ export default function SearchScreen() {
     return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
-    <div className="m-4">
+    <div>
       <Helmet>
         <title>Search Products</title>
       </Helmet>
@@ -239,7 +239,6 @@ export default function SearchScreen() {
                 <Col className="text-end">
                   Sort by{' '}
                   <select
-                    className="my-2"
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
@@ -271,12 +270,21 @@ export default function SearchScreen() {
                     className="mx-1"
                     to={{
                       pathname: '/search',
-                      seacrh: getFilterUrl({ page: x + 1 }, true),
+                      search: getFilterUrl({ page: x + 1 }),
                     }}
+                    style={
+                      x + 1 === Number(page)
+                        ? { backgroundColor: '#e1c300', color: 'white' }
+                        : {}
+                    }
                   >
                     <Button
-                      className={Number(page) === x + 1 ? 'text-bold' : ''}
-                      variant="light"
+                      className={
+                        Number(page) === x + 1
+                          ? 'btn btn-warning text-bold text-white rounded-circle border border-warning'
+                          : 'btn border-0'
+                      }
+                      variant="white"
                     >
                       {x + 1}
                     </Button>

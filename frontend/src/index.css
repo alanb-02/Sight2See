@@ -16,7 +16,19 @@ main {
 }
 
 .head-navbar {
-  background-color: #afafaf;
+  background-color: #193821;
+}
+
+.brand-name {
+  font-size: 30px;
+}
+
+.nav-toggler {
+  background-color: #d4ba10;
+}
+
+.navbar .nav-link.dropdown-toggle {
+  color: white;
 }
 
 .footer {
@@ -149,4 +161,10 @@ img.medium {
 .admin-row {
   background-color: #ffdd003d;
   border: 2px dotted black;
+}
+
+/* SEARCHBAR COMPONENT */
+#button-search {
+  background-color: #d4ba10;
+  color: #ffffff;
 }
