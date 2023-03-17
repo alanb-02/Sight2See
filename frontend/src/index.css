@@ -15,6 +15,14 @@ main {
   flex: 1;
 }
 
+.head-navbar {
+  background-color: #afafaf;
+}
+
+.footer {
+  background-color: #edd38c;
+}
+
 .btn-primary {
   color: #ffffff;
 }
@@ -135,4 +143,10 @@ img.medium {
 .checkout-steps > div.active {
   border-bottom: 0.2rem solid #c9ae00;
   color: #e1c300;
+}
+
+/* USER LIST - ADMIN */
+.admin-row {
+  background-color: #ffdd003d;
+  border: 2px dotted black;
 }
