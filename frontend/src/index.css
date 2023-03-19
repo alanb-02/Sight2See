@@ -142,6 +142,11 @@ img.medium {
   width: 80px;
 }
 
+.cart-summary {
+  position: sticky;
+  top: 0;
+}
+
 /* SIGN IN PAGE */
 .small-container {
   max-width: 600px;

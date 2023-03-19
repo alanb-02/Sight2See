@@ -21,6 +21,8 @@ import EditProductScreen from './screens/EditProductScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
+import ForgotPass from './screens/ForgotPass';
+import ResetPass from './screens/ResetPass';
 import SearchBar from './Components/SearchBar';
 import ProtectedRoute from './Components/ProtectedRoute';
 import AdminRoute from './Components/AdminRoute';
@@ -171,6 +173,8 @@ function App() {
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/signin" element={<SignInScreen />} />
               <Route path="/signup" element={<RegisterScreen />} />
+              <Route path="/forget-password" element={<ForgotPass />} />
+              <Route path="/reset-password/:token" element={<ResetPass />} />
               <Route path="/placeorder" element={<PlaceOrderScreen />} />
               <Route
                 path="/order/:id"
