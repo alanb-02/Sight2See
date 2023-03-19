@@ -135,11 +135,7 @@ export default function UserListScreen() {
                     Delete
                   </Button>
                   &nbsp;
-                  <Button
-                    type="button"
-                    variant="light"
-                    onClick={() => deleteHandler(user)}
-                  >
+                  <Button type="button" variant="light">
                     Send Details
                   </Button>
                 </td>
