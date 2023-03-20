@@ -88,6 +88,21 @@ export default function UserListScreen() {
     }
   };
 
+  const sendDetailsHandler = async (user) => {
+    try {
+      const { data } = await axios.post(
+        '/api/users/send-details',
+        { user },
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        }
+      );
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -135,7 +150,11 @@ export default function UserListScreen() {
                     Delete
                   </Button>
                   &nbsp;
-                  <Button type="button" variant="light">
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() => sendDetailsHandler(user)}
+                  >
                     Send Details
                   </Button>
                 </td>

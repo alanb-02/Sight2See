@@ -58,6 +58,39 @@ userRouter.put(
 );
 
 userRouter.post(
+  '/send-details',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const { user } = req.body;
+    const userData = await User.findById(user._id);
+    if (userData) {
+      const emailData = {
+        from: 'Sight2See <sight2alan@gmail.com>',
+        to: `${userData.name} <${userData.email}>`,
+        subject: `User Details`,
+        html: `
+          <p>Name: ${userData.name}</p>
+          <p>Email: ${userData.email}</p>
+          <p>PPSN: ${userData.ppsn}</p>
+          <p>PRSI Used: ${userData.prsiUsed ? 'Yes' : 'No'}</p>
+        `,
+      };
+      mailgun()
+        .messages()
+        .send(emailData, (error, body) => {
+          if (error) {
+            res.status(500).send({ message: 'Error sending email' });
+          } else {
+            res.send({ message: 'User details sent successfully' });
+          }
+        });
+    } else {
+      res.status(404).send({ message: 'User not found' });
+    }
+  })
+);
+
+userRouter.post(
   '/forget-password',
   expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
