@@ -23,6 +23,7 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import ForgotPass from './screens/ForgotPass';
 import ResetPass from './screens/ResetPass';
+import AboutUsScreen from './screens/AboutUsScreen';
 import SearchBar from './Components/SearchBar';
 import ProtectedRoute from './Components/ProtectedRoute';
 import AdminRoute from './Components/AdminRoute';
@@ -170,6 +171,7 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/about" element={<AboutUsScreen />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/signin" element={<SignInScreen />} />
               <Route path="/signup" element={<RegisterScreen />} />

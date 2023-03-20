@@ -6,7 +6,7 @@ export const baseUrl = () =>
     ? process.env.BASE_URL
     : process.env.NODE_ENV !== 'production'
     ? 'http://localhost:3000'
-    : 'https://sight2see-app.onrender.com';
+    : 'https://sight2see-app.herokuapp.com';
 
 export const generateToken = (user) => {
   return jwt.sign(
