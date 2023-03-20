@@ -138,13 +138,16 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
-          <div>
-            <ul>
+          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+            <h3 style={{ color: '#193821', marginBottom: '10px' }}>
+              Department
+            </h3>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
               <li>
                 <Link
                   className={'all' === category ? 'text-bold' : ''}
                   to={getFilterUrl({ category: 'all' })}
+                  style={{ textDecoration: 'none', color: '#d4ba10' }}
                 >
                   Any
                 </Link>
@@ -154,6 +157,7 @@ export default function SearchScreen() {
                   <Link
                     className={c === category ? 'text-bold' : ''}
                     to={getFilterUrl({ category: c })}
+                    style={{ textDecoration: 'none', color: '#d4ba10' }}
                   >
                     {c}
                   </Link>
@@ -161,13 +165,14 @@ export default function SearchScreen() {
               ))}
             </ul>
           </div>
-          <div>
-            <h3>Price</h3>
-            <ul>
+          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+            <h3 style={{ color: '#193821', marginBottom: '10px' }}>Price</h3>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
               <li>
                 <Link
                   className={'all' === price ? 'text-bold' : ''}
                   to={getFilterUrl({ price: 'all' })}
+                  style={{ textDecoration: 'none', color: '#d4ba10' }}
                 >
                   Any
                 </Link>
@@ -177,6 +182,7 @@ export default function SearchScreen() {
                   <Link
                     to={getFilterUrl({ price: p.value })}
                     className={p.value === price ? 'text-bold' : ''}
+                    style={{ textDecoration: 'none', color: '#d4ba10' }}
                   >
                     {p.name}
                   </Link>
@@ -184,14 +190,18 @@ export default function SearchScreen() {
               ))}
             </ul>
           </div>
-          <div>
-            <h3>Avg. Customer Review</h3>
-            <ul>
+          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+            <h3 style={{ color: '#193821', marginBottom: '10px' }}>
+              Avg. Customer Review
+            </h3>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
               {ratings.map((r) => (
                 <li key={r.name}>
                   <Link
                     to={getFilterUrl({ rating: r.rating })}
-                    className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
+                    style={{
+                      color: `${r.rating}` === `${rating}` ? '#193821' : '#000',
+                    }}
                   >
                     <Rating caption={' & up'} rating={r.rating}></Rating>
                   </Link>
@@ -200,7 +210,7 @@ export default function SearchScreen() {
               <li>
                 <Link
                   to={getFilterUrl({ rating: 'all' })}
-                  className={rating === 'all' ? 'text-bold' : ''}
+                  style={{ color: rating === 'all' ? '#193821' : '#000' }}
                 >
                   <Rating caption={' & up'} rating={0}></Rating>
                 </Link>
@@ -218,7 +228,10 @@ export default function SearchScreen() {
               <Row className="justify-content-between mb-3">
                 <Col md={6}>
                   <div>
-                    {countProducts === 0 ? 'No' : countProducts} Results
+                    <strong>
+                      {countProducts === 0 ? 'No' : countProducts}
+                    </strong>
+                    &nbsp; Results
                     {query !== 'all' && ' : ' + query}
                     {category !== 'all' && ' : ' + category}
                     {price !== 'all' && ' : Price ' + price}
@@ -243,11 +256,20 @@ export default function SearchScreen() {
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
+                    className="sort"
                   >
-                    <option value="newest">Newest Arrivals</option>
-                    <option value="lowest">Price: Low to High</option>
-                    <option value="highest">Price: High to Low</option>
-                    <option value="toprated">Avg. Customer Reviews</option>
+                    <option className="sort-drop" value="newest">
+                      Newest Arrivals
+                    </option>
+                    <option className="sort-drop" value="lowest">
+                      Price: Low to High
+                    </option>
+                    <option className="sort-drop" value="highest">
+                      Price: High to Low
+                    </option>
+                    <option className="sort-drop" value="toprated">
+                      Avg. Customer Reviews
+                    </option>
                   </select>
                 </Col>
               </Row>

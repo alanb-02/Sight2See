@@ -15,8 +15,39 @@ main {
   flex: 1;
 }
 
+.brand-name:hover {
+  transform: scale(1.1);
+}
+
+.brand-name {
+  transition: transform 0.3s ease-in-out;
+}
+
 .head-navbar {
   background-color: #193821;
+  border-bottom: #d4ba10 solid 5px;
+}
+
+.head1:hover {
+  background-color: #d4ba10;
+}
+
+.head2-1 {
+  background-color: #d4ba10;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.head2-2 {
+  background-color: #d4ba10;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.head2-1:hover {
+  background-color: #433f23;
+}
+
+.head2-2:hover {
+  background-color: #433f23;
 }
 
 .brand-name {
@@ -99,6 +130,16 @@ img.medium {
 .rating span:last-child {
   color: #585858;
   padding-left: 10px;
+}
+
+.sort {
+  border: none;
+  border-bottom: 3px solid #f0c040;
+  outline: none; /* Optional: remove the default blue outline */
+}
+
+.sort-drop {
+  color: #e1c300;
 }
 
 /* PRODUCT PAGE */

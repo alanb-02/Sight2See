@@ -183,12 +183,14 @@ userRouter.post(
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password),
+      ppsn: req.body.ppsn,
     });
     const user = await newUser.save();
     res.send({
       _id: user._id,
       name: user.name,
       email: user.email,
+      ppsn: user.ppsn,
       isAdmin: user.isAdmin,
       token: generateToken(user),
     });

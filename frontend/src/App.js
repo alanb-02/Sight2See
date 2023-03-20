@@ -101,18 +101,27 @@ function App() {
                 <SearchBar />
                 &nbsp; &nbsp; &nbsp;
                 <Nav className="me-auto justify-content-start">
-                  <Link className="nav-link text-white" to="/">
+                  <Link className="head1 nav-link text-white rounded" to="/">
                     Home
                   </Link>
-                  <Link className="nav-link text-white" to="/search">
+                  <Link
+                    className="head1 nav-link text-white rounded"
+                    to="/search"
+                  >
                     Products
                   </Link>
-                  <Link className="nav-link  text-white" to="/about">
+                  <Link
+                    className="head1 nav-link  text-white rounded"
+                    to="/about"
+                  >
                     About
                   </Link>
                 </Nav>
                 <Nav className="me-auto  w-100  justify-content-end">
-                  <Link to="/cart" className="nav-link">
+                  <Link
+                    to="/cart"
+                    className=" head1 nav-link text-white rounded"
+                  >
                     <span className="text-white">Cart</span>
                     {cart.cartItems.length > 0 && (
                       <Badge pill bg="danger">
@@ -122,7 +131,11 @@ function App() {
                   </Link>
 
                   {userInfo ? (
-                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <NavDropdown
+                      title={userInfo.name}
+                      id="basic-nav-dropdown"
+                      className="head2-1 rounded-left"
+                    >
                       <LinkContainer to="/profile">
                         <NavDropdown.Item>User Profile</NavDropdown.Item>
                       </LinkContainer>
@@ -141,12 +154,16 @@ function App() {
                       </Link>
                     </NavDropdown>
                   ) : (
-                    <Link className="nav-link" to="/signin">
-                      Sign In
+                    <Link className="nav-link head2 rounded" to="/signin">
+                      <span className="text-white">Sign In</span>
                     </Link>
                   )}
                   {userInfo && userInfo.isAdmin && (
-                    <NavDropdown title="Admin" id="admin-nav-dropdown">
+                    <NavDropdown
+                      title="Admin"
+                      id="admin-nav-dropdown"
+                      className="head2-2 rounded-right"
+                    >
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
                       </LinkContainer>
