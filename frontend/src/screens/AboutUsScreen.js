@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Fade } from 'react-reveal';
-import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMapMarkerAlt,
@@ -10,11 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  faStar,
-  faQuoteLeft,
-  faQuoteRight,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   faFacebookF,
   faTwitter,
   faInstagram,
@@ -22,14 +16,6 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const AboutUsScreen = () => {
-  const sliderSettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <div className="about">
       <Container>
