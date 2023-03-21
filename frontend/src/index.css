@@ -214,3 +214,19 @@ img.medium {
   background-color: #d4ba10;
   color: #ffffff;
 }
+#button-search:hover {
+  background-color: #978b37;
+  color: #ffffff;
+}
+
+/* EYE TEST */
+hr {
+  border: none; /* remove default border */
+  border-top: 5px solid #d4ba10; /* set thickness and color */
+  margin: 20px 0; /* add margin to separate from content */
+}
+
+.submit1-btn {
+  background-color: #1f4f2b;
+  color: #ffffff;
+}

@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import HomeScreen from './screens/HomeScreen';
+import VisionAcuityTest from './screens/VisionAcuityTest ';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import SignInScreen from './screens/SignInScreen';
@@ -111,6 +112,13 @@ function App() {
                     Products
                   </Link>
                   <Link
+                    className="head1 nav-link text-white rounded"
+                    to="/test"
+                    style={{ whiteSpace: 'nowrap' }}
+                  >
+                    Eye Test
+                  </Link>
+                  <Link
                     className="head1 nav-link  text-white rounded"
                     to="/about"
                   >
@@ -189,6 +197,7 @@ function App() {
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/about" element={<AboutUsScreen />} />
+              <Route path="/test" element={<VisionAcuityTest />} />
               <Route path="/cart" element={<CartScreen />} />
               <Route path="/signin" element={<SignInScreen />} />
               <Route path="/signup" element={<RegisterScreen />} />
