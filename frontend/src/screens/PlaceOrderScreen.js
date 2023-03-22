@@ -39,7 +39,10 @@ export default function PlaceOrderScreen() {
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
   cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
-  cart.prsiPrice = round2(0.5 * cart.itemsPrice);
+
+  // Randomly apply PRSI Benefit
+  const applyPrsi = Math.random() >= 0.5;
+  cart.prsiPrice = applyPrsi ? round2(0.5 * cart.itemsPrice) : 0;
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice - cart.prsiPrice;
 
   const placeOrderHandler = async () => {
