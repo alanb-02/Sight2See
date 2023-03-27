@@ -177,6 +177,19 @@ img.medium {
   font-weight: bold;
 }
 
+.canvas-container {
+  position: relative;
+  width: 640px;
+  height: 480px;
+}
+
+.canvas-container canvas,
+.canvas-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 /* CART PAGE */
 .img-thumbnail {
   height: 50px;
