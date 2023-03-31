@@ -14,15 +14,20 @@ import {
   faInstagram,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
+import { Helmet } from 'react-helmet-async';
 
 const AboutUsScreen = () => {
   return (
     <div className="about">
+      <Helmet>
+        <title>Sight2See - About Us</title>
+      </Helmet>
       <Container>
+        <h1 className="text-center mt-5">About Us</h1>
         <Row className="my-5">
           <Col md={6} className="align-self-center">
             <Fade left>
-              <h1>About Sight2See</h1>
+              <h3 className="mb-4">Who We Are?</h3>
               <p className="text-muted mb-4">
                 Sight2See Optician Company is a leading provider of eye care
                 services and products in Ireland. We have been serving our local
@@ -42,51 +47,31 @@ const AboutUsScreen = () => {
                 need a new prescription, a new pair of glasses, or advice on eye
                 care, our team is here to help.
               </p>
-              <div>
-                <FontAwesomeIcon
-                  icon={faFacebookF}
-                  className="text-muted mr-3"
-                />
-                <FontAwesomeIcon icon={faTwitter} className="text-muted mr-3" />
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="text-muted mr-3"
-                />
-                <FontAwesomeIcon
-                  icon={faLinkedinIn}
-                  className="text-muted mr-3"
-                />
-              </div>
             </Fade>
           </Col>
           <Col md={6} className="d-flex align-items-center">
             <Fade right>
               <img
-                src="https://i.imgur.com/7Hr5rRz.jpg"
+                src="/images/about1.png"
                 alt="Optician"
-                className="img-fluid"
+                className="ab-img img-fluid"
               />
             </Fade>
           </Col>
         </Row>
-
         <Row className="my-5">
-          <Col md={6} className="align-self-center">
+          <Col md={6} className="d-flex align-items-center">
             <Fade left>
-              <h2 className="mb-4">We Offer PRSI Benefits to Those Entitled</h2>
-              <p className="text-muted mb-4">
-                Sight2See Optician Company is an approved provider of PRSI
-                benefits. If you are entitled to PRSI benefits, you may be
-                eligible for a free eye test and glasses every two years.
-                Contact us
-              </p>
+              <img
+                src="/images/about2.png"
+                alt="PRSI Benefits"
+                className="ab-img img-fluid"
+              />
             </Fade>
           </Col>
-        </Row>
-        <Row className="my-5">
-          <Col md={6} className="align-self-center">
-            <Fade left>
-              <h2 className="mb-4">PRSI Benefits</h2>
+          <Col md={6} className="align-items-center">
+            <Fade right>
+              <h3 className="mb-4">PRSI Benefits</h3>
               <p className="text-muted mb-4">
                 If you are an employee in Ireland and pay PRSI (Pay-Related
                 Social Insurance) you may be entitled to a free eye test every
@@ -101,15 +86,6 @@ const AboutUsScreen = () => {
               </p>
             </Fade>
           </Col>
-          <Col md={6} className="d-flex align-items-center">
-            <Fade right>
-              <img
-                src="https://i.imgur.com/ZJQk3y0.jpg"
-                alt="PRSI Benefits"
-                className="img-fluid"
-              />
-            </Fade>
-          </Col>
         </Row>
 
         <hr className="my-5" />
@@ -121,7 +97,6 @@ const AboutUsScreen = () => {
             </Fade>
           </Col>
         </Row>
-
         <Row className="my-5">
           <Col md={6}>
             <Fade left>
@@ -136,12 +111,15 @@ const AboutUsScreen = () => {
               ></iframe>
             </Fade>
           </Col>
-          <Col md={6} className="d-flex align-items-center">
+          <Col
+            md={6}
+            className="d-flex flex-column justify-content-center align-items-center"
+          >
             <Fade right>
               <div className="d-flex align-items-center mb-4">
                 <FontAwesomeIcon
                   icon={faMapMarkerAlt}
-                  className="text-warning mr-3"
+                  className="text-warning icon"
                 />
                 <div>
                   <p className="text-muted mb-0">Address</p>
@@ -150,7 +128,7 @@ const AboutUsScreen = () => {
                 </div>
               </div>
               <div className="d-flex align-items-center mb-4">
-                <FontAwesomeIcon icon={faPhone} className="text-warning mr-3" />
+                <FontAwesomeIcon icon={faPhone} className="text-warning icon" />
                 <div>
                   <p className="text-muted mb-0">Phone</p>
                   <p className="mb-0">+353-123-4567</p>
@@ -159,27 +137,12 @@ const AboutUsScreen = () => {
               <div className="d-flex align-items-center mb-4">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="text-warning mr-3"
+                  className="text-warning icon"
                 />
                 <div>
                   <p className="text-muted mb-0">Email</p>
-                  <p className="mb-0">info@sight2see.com</p>
+                  <p className="mb-0">sight2alan@gmail.com</p>
                 </div>
-              </div>
-              <div>
-                <FontAwesomeIcon
-                  icon={faFacebookF}
-                  className="text-muted mr-3"
-                />
-                <FontAwesomeIcon icon={faTwitter} className="text-muted mr-3" />
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className="text-muted mr-3"
-                />
-                <FontAwesomeIcon
-                  icon={faLinkedinIn}
-                  className="text-muted mr-3"
-                />
               </div>
             </Fade>
           </Col>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useReducer, useRef, useState } from 'react';
+import React, { Suspense } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   Container,
@@ -20,6 +21,7 @@ import { getError } from '../utils';
 import { Store } from '../Stores';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { euclideanDistance } from 'face-api.js';
 import * as faceapi from 'face-api.js';
 const { loadFaceLandmarkTinyModel } = faceapi;
@@ -82,6 +84,88 @@ function ProductScreen() {
     });
     navigate('/cart');
   };
+
+  function ModelViewer({ modelUrl }) {
+    const canvasRef = useRef(null);
+    const rendererRef = useRef(null);
+    const controlsRef = useRef(null);
+
+    useEffect(() => {
+      if (!canvasRef.current) {
+        return;
+      }
+
+      const canvas = canvasRef.current;
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      rendererRef.current = renderer;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        canvas.width / canvas.height,
+        0.1,
+        1000
+      );
+      camera.position.z = 2;
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+      directionalLight.position.set(0, 1, 1);
+      scene.add(directionalLight);
+
+      // Add OrbitControls
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.screenSpacePanning = false;
+      controls.minDistance = 1;
+      controls.maxDistance = 10;
+      controls.maxPolarAngle = Math.PI / 2;
+      controlsRef.current = controls;
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        controlsRef.current.update(); // Update the controls in the animation loop
+        rendererRef.current.render(scene, camera);
+      };
+
+      const loadModel = async () => {
+        const loader = new GLTFLoader();
+        try {
+          const gltf = await loader.loadAsync(modelUrl);
+          scene.add(gltf.scene);
+          animate();
+        } catch (error) {
+          console.error('Error loading 3D model:', error);
+        }
+      };
+
+      loadModel();
+
+      return () => {
+        // Clean up controls when unmounting the component
+        controlsRef.current.dispose();
+      };
+    }, [modelUrl]);
+
+    return (
+      <canvas
+        ref={canvasRef}
+        style={{
+          width: '100%',
+          height: '500px',
+        }}
+      />
+    );
+  }
 
   const [videoEnabled, setVideoEnabled] = useState(false);
 
@@ -231,7 +315,18 @@ function ProductScreen() {
           .withFaceLandmarks(true);
 
         context2D.clearRect(0, 0, canvas2D.width, canvas2D.height);
-        context2D.drawImage(video, 0, 0, canvas2D.width, canvas2D.height);
+
+        // Flip video horizontally
+        context2D.save();
+        context2D.scale(-1, 1);
+        context2D.drawImage(
+          video,
+          -canvas2D.width,
+          0,
+          canvas2D.width,
+          canvas2D.height
+        );
+        context2D.restore();
 
         if (detections && detections.length > 0) {
           const landmarks = detections[0].landmarks;
@@ -247,7 +342,7 @@ function ProductScreen() {
 
             model.scale.set(scaleFactor, scaleFactor, scaleFactor);
             model.position.set(
-              (noseBridgeTop._x / canvas3D.width) * 2 - 1,
+              -((noseBridgeTop._x / canvas3D.width) * 2 - 1),
               -((noseBridgeTop._y / canvas3D.height) * 2 - 1),
               -1 - scaleFactor / 1.5
             );
@@ -256,7 +351,7 @@ function ProductScreen() {
             const faceRotation = calculateFaceRotation(landmarks);
             model.rotation.y = THREE.MathUtils.lerp(
               model.rotation.y,
-              -faceRotation,
+              faceRotation,
               0.1
             );
           }
@@ -286,80 +381,114 @@ function ProductScreen() {
       ) : (
         <>
           <Helmet>
-            <title>{product.name} | YourShop</title>
+            <title>Sight2See - {product.name}</title>
           </Helmet>
-          <Container>
-            <Row className="my-4">
-              <Col md={6}>
-                <Tab.Container defaultActiveKey="image">
-                  <Nav variant="pills" className="mb-3">
-                    <Nav.Item>
-                      <Nav.Link eventKey="image">Image</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="model">Model Viewer</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="tryon">Virtual Try-On</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="image">
-                      <Image src={product.image} alt={product.name} fluid />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="model">
-                      {/* Model Viewer Component */}
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="tryon">
-                      <VideoFeed modelUrl={product.threeD} />
-                    </Tab.Pane>
-                  </Tab.Content>
-                </Tab.Container>
-              </Col>
-              <Col md={6}>
-                <Card>
-                  <Card.Header as="h5">{product.name}</Card.Header>
-                  <Card.Body>
-                    <Card.Text>{product.description}</Card.Text>
-                    <ListGroup variant="flush">
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Price:</Col>
-                          <Col>${product.price.toFixed(2)}</Col>
-                        </Row>
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Status:</Col>
-                          <Col>
-                            {product.countInStock > 0 ? (
-                              <Badge pill bg="success">
-                                In Stock
-                              </Badge>
-                            ) : (
-                              <Badge pill bg="danger">
-                                Out of Stock
-                              </Badge>
-                            )}
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <Button
-                          onClick={addToCartHandler}
-                          className="btn-block"
-                          type="button"
-                          disabled={product.countInStock === 0}
+          <div className="product-screen-wrapper">
+            <Container>
+              <Row className="my-4">
+                <Col md={6}>
+                  <Tab.Container defaultActiveKey="image">
+                    <Nav variant="pills" className="mb-3 nav-pills-custom">
+                      <Nav.Item>
+                        <Nav.Link className="bg-white" eventKey="image">
+                          Image
+                        </Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link className="bg-white" eventKey="model">
+                          Model Viewer
+                        </Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link className="bg-white" eventKey="tryon">
+                          Virtual Try-On
+                        </Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+
+                    <Tab.Content>
+                      <Tab.Pane eventKey="image">
+                        <Image src={product.image} alt={product.name} fluid />
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="model">
+                        <ModelViewer modelUrl={product.threeD} />
+                        <p className="text-success">
+                          *** Drag with mouse to move model, and scroll/pinch to
+                          zoom in and out
+                        </p>
+                      </Tab.Pane>
+                      <Tab.Pane eventKey="tryon">
+                        <div
+                          style={{
+                            position: 'relative',
+                            width: '100%',
+                            height: '0',
+                            paddingBottom: '75%',
+                          }}
                         >
-                          Add to Cart
-                        </Button>
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+                          <VideoFeed modelUrl={product.threeD} />
+                          <p className="text-success">
+                            *** Place head closer to screen until the glasses
+                            appear on the face
+                          </p>
+                        </div>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Tab.Container>
+                </Col>
+                <Col className="mt-5" md={6}>
+                  <Card>
+                    <Card.Header className="" as="h5">
+                      {product.name}
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Text>{product.description}</Card.Text>
+                      <ListGroup variant="flush">
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Brand:</Col>
+                            <Col>{product.brand}</Col>
+                          </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Price:</Col>
+                            <Col>${product.price.toFixed(2)}</Col>
+                          </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Row>
+                            <Col>Status:</Col>
+                            <Col>
+                              {product.countInStock > 0 ? (
+                                <Badge pill bg="success">
+                                  In Stock
+                                </Badge>
+                              ) : (
+                                <Badge pill bg="danger">
+                                  Out of Stock
+                                </Badge>
+                              )}
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <Button
+                            onClick={addToCartHandler}
+                            className="submit1-btn btn-success btn-block w-100"
+                            type="button"
+                            disabled={product.countInStock === 0}
+                          >
+                            Add to Cart
+                          </Button>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         </>
       )}
     </div>

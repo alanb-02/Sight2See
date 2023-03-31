@@ -25,7 +25,6 @@ main {
 
 .head-navbar {
   background-color: #193821;
-  border-bottom: #d4ba10 solid 5px;
 }
 
 .head1:hover {
@@ -52,6 +51,10 @@ main {
 
 .brand-name {
   font-size: 30px;
+}
+
+.marquee-container {
+  background-color: #d4ba10;
 }
 
 .nav-toggler {
@@ -88,6 +91,100 @@ img.medium {
 }
 
 /* home products */
+.banner {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  height: 400px; /* Adjust height as desired */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circular-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.home-image {
+  width: 200px; /* Adjust to your desired width */
+  height: 200px; /* Adjust to your desired height */
+  object-fit: cover;
+}
+
+.active-link {
+  color: #f0c040;
+}
+
+.display-4 {
+  margin-bottom: 10px;
+}
+
+.products {
+  padding: 1rem 0;
+}
+
+.fade-in-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 2s ease-in 1 forwards;
+  opacity: 0;
+}
+
+.fade-in-image-delay-1 {
+  animation-delay: 0.5s;
+}
+
+.fade-in-image-delay-2 {
+  animation-delay: 1s;
+}
+
+.fade-in-image-delay-3 {
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.image-container {
+  position: relative;
+  display: inline-block; /* Add this line */
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 7px; /* Adjust to your desired position */
+  right: 2px; /* Adjust to your desired position */
+  font-size: 15px;
+  color: rgb(200, 170, 0); /* Change text color for better visibility */
+  background-color: rgba(
+    2,
+    66,
+    22,
+    0.982
+  ); /* Add a background color with some transparency */
+  padding: 5px 10px; /* Add some padding */
+  width: calc(
+    100% - 5px
+  ); /* Make the caption width the same as the image width, minus the padding */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+  transition: transform 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.image-caption:hover {
+  transform: scale(1.1); /* Enlarge slightly on hover */
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -115,6 +212,20 @@ img.medium {
 
 .product-brand {
   color: rgb(200, 170, 0);
+}
+
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.product-btn {
+  background-color: #0d4117;
 }
 
 .price {
@@ -150,15 +261,6 @@ img.medium {
 /* sidebar */
 .navbar-brand {
   font-weight: bold;
-}
-
-.side-navbar {
-  width: 240px;
-  height: 100%;
-  position: absolute;
-  left: -300px;
-  background-color: #100901;
-  transition: 0.5s;
 }
 
 .site-container {
@@ -232,14 +334,109 @@ img.medium {
   color: #ffffff;
 }
 
+.filter-button:hover {
+  background-color: #0d4117;
+}
+
 /* EYE TEST */
 hr {
-  border: none; /* remove default border */
-  border-top: 5px solid #d4ba10; /* set thickness and color */
-  margin: 20px 0; /* add margin to separate from content */
+  border: none;
+  border-top: 5px solid #d4ba10;
+  margin: 20px 0;
 }
 
 .submit1-btn {
   background-color: #1f4f2b;
   color: #ffffff;
+}
+
+/* EACH PRODUCTS */
+
+.nav-pills-custom {
+  background-color: white;
+}
+
+.nav-pills-custom .nav-link {
+  color: #1f4f2b;
+  font-weight: bolder;
+}
+
+.nav-pills-custom .nav-link.active {
+  color: #1f4f2b;
+  border-bottom: 5px solid #d4ba10;
+}
+
+.nav-pills-custom .nav-link:focus,
+.nav-pills-custom .nav-link:visited,
+.nav-pills-custom .nav-link:hover {
+  color: green;
+  text-decoration: none;
+}
+
+.product-screen-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ABOUT US */
+.icon {
+  margin-right: 10px;
+}
+
+.ab-img {
+  max-height: 300px;
+  width: 600px;
+}
+
+/* EYE TESTING */
+.ast-clock {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .ast-clock {
+    max-width: 200px; /* Reduced from 300px */
+  }
+}
+
+@media (min-width: 992px) {
+  .ast-clock {
+    max-width: 300px; /* Reduced from 500px */
+  }
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeInLeft 1s forwards;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: fadeInRight 1s forwards;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

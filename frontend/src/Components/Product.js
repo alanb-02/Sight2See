@@ -28,7 +28,7 @@ function Product(props) {
   };
 
   return (
-    <Card>
+    <Card className="product-card">
       <Link to={`/product/${product.slug}`}>
         <img
           src={product.image}
@@ -41,7 +41,7 @@ function Product(props) {
           to={`/product/${product.slug}`}
           style={{ textDecoration: 'none' }}
         >
-          <Card.Title>{product.name}</Card.Title>
+          <Card.Title style={{ color: '#c9ae00' }}>{product.name}</Card.Title>
         </Link>
         <Card.Text>{product.brand}</Card.Text>
         <Rating rating={product.rating} numReviews={product.numRatings} />
@@ -53,7 +53,12 @@ function Product(props) {
             Out of stock
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(product)}>Add to cart</Button>
+          <Button
+            className="product-btn btn-success"
+            onClick={() => addToCartHandler(product)}
+          >
+            Add to cart
+          </Button>
         )}
       </Card.Body>
     </Card>

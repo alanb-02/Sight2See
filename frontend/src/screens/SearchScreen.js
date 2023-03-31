@@ -6,6 +6,8 @@ import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Collapse from 'react-bootstrap/Collapse';
+import { useMediaQuery } from 'react-responsive';
 import Rating from '../Components/Rating';
 import LoadingBox from '../Components/LoadingBox';
 import MessageBox from '../Components/MessageBox';
@@ -86,6 +88,9 @@ export default function SearchScreen() {
   const order = sp.get('order') || 'newest';
   const page = sp.get('page') || 1;
 
+  const [openFilters, setOpenFilters] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const [{ loading, error, products, pages, countProducts }, dispatch] =
     useReducer(reducer, {
       loading: true,
@@ -134,89 +139,108 @@ export default function SearchScreen() {
   return (
     <div>
       <Helmet>
-        <title>Search Products</title>
+        <title>Sight2See - Products</title>
       </Helmet>
       <Row>
+        <h1 className="text-center mt-4 mb-5">Products</h1>
         <Col md={3}>
-          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
-            <h3 style={{ color: '#193821', marginBottom: '10px' }}>
-              Department
-            </h3>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-              <li>
-                <Link
-                  className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                  style={{ textDecoration: 'none', color: '#d4ba10' }}
-                >
-                  Any
-                </Link>
-              </li>
-              {categories.map((c) => (
-                <li key={c}>
+          {isMobile && (
+            <Button
+              className="filter-button btn-success mb-4 text-white"
+              style={{ backgroundColor: '#1f4f2b', width: '100%' }}
+              onClick={() => setOpenFilters(!openFilters)}
+              aria-controls="filters-collapse"
+              aria-expanded={openFilters}
+            >
+              {openFilters ? 'Hide Filters' : 'Show Filters'}
+            </Button>
+          )}
+          <Collapse in={!isMobile || openFilters}>
+            <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+              <h3 style={{ color: '#193821', marginBottom: '10px' }}>
+                Department
+              </h3>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                <li>
                   <Link
-                    className={c === category ? 'text-bold' : ''}
-                    to={getFilterUrl({ category: c })}
+                    className={'all' === category ? 'text-bold' : ''}
+                    to={getFilterUrl({ category: 'all' })}
                     style={{ textDecoration: 'none', color: '#d4ba10' }}
                   >
-                    {c}
+                    Any
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
-            <h3 style={{ color: '#193821', marginBottom: '10px' }}>Price</h3>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-              <li>
-                <Link
-                  className={'all' === price ? 'text-bold' : ''}
-                  to={getFilterUrl({ price: 'all' })}
-                  style={{ textDecoration: 'none', color: '#d4ba10' }}
-                >
-                  Any
-                </Link>
-              </li>
-              {prices.map((p) => (
-                <li key={p.value}>
+                {categories.map((c) => (
+                  <li key={c}>
+                    <Link
+                      className={c === category ? 'text-bold' : ''}
+                      to={getFilterUrl({ category: c })}
+                      style={{ textDecoration: 'none', color: '#d4ba10' }}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Collapse>
+          <Collapse in={!isMobile || openFilters}>
+            <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+              <h3 style={{ color: '#193821', marginBottom: '10px' }}>Price</h3>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                <li>
                   <Link
-                    to={getFilterUrl({ price: p.value })}
-                    className={p.value === price ? 'text-bold' : ''}
+                    className={'all' === price ? 'text-bold' : ''}
+                    to={getFilterUrl({ price: 'all' })}
                     style={{ textDecoration: 'none', color: '#d4ba10' }}
                   >
-                    {p.name}
+                    Any
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-          <div style={{ backgroundColor: '#748678', padding: '20px' }}>
-            <h3 style={{ color: '#193821', marginBottom: '10px' }}>
-              Avg. Customer Review
-            </h3>
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-              {ratings.map((r) => (
-                <li key={r.name}>
+                {prices.map((p) => (
+                  <li key={p.value}>
+                    <Link
+                      to={getFilterUrl({ price: p.value })}
+                      className={p.value === price ? 'text-bold' : ''}
+                      style={{ textDecoration: 'none', color: '#d4ba10' }}
+                    >
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Collapse>
+          <Collapse in={!isMobile || openFilters}>
+            <div style={{ backgroundColor: '#748678', padding: '20px' }}>
+              <h3 style={{ color: '#193821', marginBottom: '10px' }}>
+                Avg. Customer Review
+              </h3>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+                {ratings.map((r) => (
+                  <li key={r.name}>
+                    <Link
+                      to={getFilterUrl({ rating: r.rating })}
+                      style={{
+                        color:
+                          `${r.rating}` === `${rating}` ? '#193821' : '#000',
+                      }}
+                    >
+                      <Rating caption={' & up'} rating={r.rating}></Rating>
+                    </Link>
+                  </li>
+                ))}
+                <li>
                   <Link
-                    to={getFilterUrl({ rating: r.rating })}
-                    style={{
-                      color: `${r.rating}` === `${rating}` ? '#193821' : '#000',
-                    }}
+                    to={getFilterUrl({ rating: 'all' })}
+                    style={{ color: rating === 'all' ? '#193821' : '#000' }}
                   >
-                    <Rating caption={' & up'} rating={r.rating}></Rating>
+                    <Rating caption={' & up'} rating={0}></Rating>
                   </Link>
                 </li>
-              ))}
-              <li>
-                <Link
-                  to={getFilterUrl({ rating: 'all' })}
-                  style={{ color: rating === 'all' ? '#193821' : '#000' }}
-                >
-                  <Rating caption={' & up'} rating={0}></Rating>
-                </Link>
-              </li>
-            </ul>
-          </div>
+              </ul>
+            </div>
+          </Collapse>
         </Col>
         <Col md={9}>
           {loading ? (
